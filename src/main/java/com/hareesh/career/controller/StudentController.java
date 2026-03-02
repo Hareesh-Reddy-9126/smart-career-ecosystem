@@ -1,7 +1,7 @@
 package com.hareesh.career.controller;
 
 import com.hareesh.career.model.Student;
-
+import com.hareesh.career.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,13 @@ import java.util.List;
 import java.util.ArrayList;
 @RestController
 public class StudentController {
-	
+// 🔹 Day 3 old dynamic list (kept)
 private List<Student> dynamicstudents = new ArrayList<>();
-
+//🔹 Day 4: Inject Service
+private final StudentService studentService;
+public StudentController(StudentService studentService) {
+	this.studentService =  studentService;
+}
     @GetMapping("/health")
     public String health() {
         return "Backend Running Successfully!";
@@ -36,5 +40,10 @@ private List<Student> dynamicstudents = new ArrayList<>();
     @GetMapping("/students/new")
     public List<Student> getDynamicStudents(){
     	return dynamicstudents;
+    }
+    @GetMapping("/students/service")
+    public List<Student> getStudentsFromService(){
+    	System.out.println("Service Layer Method Executed");
+    	return getStudents();
     }
 }
