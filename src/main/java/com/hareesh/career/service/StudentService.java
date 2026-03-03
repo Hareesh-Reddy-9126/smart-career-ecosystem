@@ -40,4 +40,15 @@ public class StudentService {
     public boolean deleteStudent(int id) {
         return students.removeIf(student -> student.getId() == id);
     }
+    
+ // UPDATE
+    public Student updateStudent(int id, Student updatedStudent) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId() == id) {
+                students.set(i, updatedStudent);
+                return updatedStudent;
+            }
+        }
+        return null;
+    }
 }

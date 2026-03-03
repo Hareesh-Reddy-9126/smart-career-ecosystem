@@ -44,4 +44,10 @@ public class StudentController {
             return "Student not found!";
         }
     }
+    
+ // UPDATE STUDENT BY ID
+    @PutMapping("/{id}")
+    public Student updateStudent(@PathVariable int id, @RequestBody Student student) {
+        return studentService.updateStudent(id, student);
+    }
 }
