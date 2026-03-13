@@ -3,6 +3,7 @@ package com.hareesh.career.controller;
 import com.hareesh.career.model.Student;
 import com.hareesh.career.service.StudentService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class StudentController {
 
     // ADD NEW STUDENT
     @PostMapping
-    public Student addStudent(@RequestBody Student student) {
+    public Student addStudent(@Valid @RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
@@ -44,10 +45,10 @@ public class StudentController {
             return "Student not found!";
         }
     }
-    
- // UPDATE STUDENT BY ID
+
+    // UPDATE STUDENT BY ID
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable int id, @RequestBody Student student) {
+    public Student updateStudent(@PathVariable int id, @Valid @RequestBody Student student) {
         return studentService.updateStudent(id, student);
     }
 }
